@@ -39,13 +39,15 @@ void Span::addNumber(int number)
 	_numbers.push_back(number);
 }
 
-int Span::shortestSpan()
+int Span::shortestSpan() const
 {
 	if (_numbers.size() < 2)
 		throw std::runtime_error("Not enough numbers");
+	
 	std::vector<int> copy = _numbers;
 	std::sort(copy.begin(), copy.end());
 	int shortest = copy[1] - copy[0];
+	
 	for (unsigned int i = 2; i < copy.size(); i++)
 	{
 		int diff = copy[i] - copy[i - 1];
@@ -55,12 +57,14 @@ int Span::shortestSpan()
 	return shortest;
 }
 
-int Span::longestSpan()
+int Span::longestSpan() const
 {
 	if (_numbers.size() < 2)
 		throw std::runtime_error("Not enough numbers");
-	std::vector<int>::iterator maxIt = std::max_element(_numbers.begin(), _numbers.end());
-	std::vector<int>::iterator minIt = std::min_element(_numbers.begin(), _numbers.end());
+
+	std::vector<int>::const_iterator maxIt = std::max_element(_numbers.begin(), _numbers.end());
+	std::vector<int>::const_iterator minIt = std::min_element(_numbers.begin(), _numbers.end());
+
 	int res = *maxIt - *minIt;
 	return res;
 }

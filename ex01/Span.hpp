@@ -26,8 +26,8 @@ public:
 	}
 
 	void addNumber(int number);
-	int shortestSpan();
-	int longestSpan();
+	int shortestSpan() const;
+	int longestSpan() const;
 };
 
 #endif
